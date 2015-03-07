@@ -1,35 +1,28 @@
 <?php
 /**
- * Plugin Name: Get The Image
- * Plugin URI:  http://themehybrid.com/plugins/get-the-image
- * Description: This is a highly intuitive script that can grab an image by custom field, featured image, post attachment, or extracting it from the post's content.
- * Version:     1.0.1
- * Author:      Justin Tadlock
- * Author URI:  http://justintadlock.com
- */
-
-/**
- * Get the Image - An advanced post image script for WordPress.
+ * Momtaz Get The Image - An advanced post image script for WordPress.
  *
- * Get the Image was created to be a highly-intuitive image script that displays post-specific images (an 
- * image-based representation of a post).  The script handles old-style post images via custom fields for 
- * backwards compatibility.  It also supports WordPress' built-in featured image functionality.  On top of 
- * those things, it can automatically set attachment images as the post image or scan the post content for 
+ * Based on Get The Image plugin v1.0.1 by Justin Tadlock
+ * http://themehybrid.com/plugins/get-the-image
+ *
+ * Momtaz Get The Image was created to be a highly-intuitive image script that displays post-specific images (an
+ * image-based representation of a post).  The script handles old-style post images via custom fields for
+ * backwards compatibility.  It also supports WordPress' built-in featured image functionality.  On top of
+ * those things, it can automatically set attachment images as the post image or scan the post content for
  * the first image element used.  It can also fall back to a given default image.
  *
- * This program is free software; you can redistribute it and/or modify it under the terms of the GNU 
- * General Public License as published by the Free Software Foundation; either version 2 of the License, 
+ * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
+ * General Public License as published by the Free Software Foundation; either version 2 of the License,
  * or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without 
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @package   GetTheImage
- * @version   1.0.1
- * @author    Justin Tadlock <justin@justintadlock.com>
- * @copyright Copyright (c) 2008 - 2014, Justin Tadlock
- * @link      http://justintadlock.com/archives/2008/05/27/get-the-image-wordpress-plugin
- * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * @package   Momtaz
+ * @version   0.1
+ * @author    Nashwan Doaqan <nashwan.doaqan@ymail.com>
+ * @copyright Copyright (c) 2015 - 2016, Nashwan Doaqan
+ * @license   http://www.gnu.org/licenses/gpl-2.0.html
  */
 
 /* Adds theme support for WordPress 'featured images'. */
@@ -42,7 +35,7 @@ add_action( 'updated_post_meta', 'get_the_image_delete_cache_by_meta', 10, 2 );
 add_action( 'added_post_meta',   'get_the_image_delete_cache_by_meta', 10, 2 );
 
 /**
- * The main image function for displaying an image.  This is a wrapper for the Get_The_Image class. Use this 
+ * The main image function for displaying an image.  This is a wrapper for the Get_The_Image class. Use this
  * function in themes rather than the class.
  *
  * @since  0.1.0
@@ -62,8 +55,8 @@ function get_the_image( $args = array() ) {
 
 
 /**
- * Class for getting images related to a post.  Only use this class in your projects if you absolutely know 
- * what you're doing and expect your code to break in future versions.  Use the the `get_the_image()` 
+ * Class for getting images related to a post.  Only use this class in your projects if you absolutely know
+ * what you're doing and expect your code to break in future versions.  Use the the `get_the_image()`
  * wrapper function instead.  That's the reason it exists.
  *
  * @since  1.0.0
@@ -81,8 +74,8 @@ final class Get_The_Image {
 	public $args  = array();
 
 	/**
-	 * Image arguments array filled by the class.  This is used to store data about the image (src, 
-	 * width, height, etc.).  In some scenarios, it may not be set, particularly when getting the 
+	 * Image arguments array filled by the class.  This is used to store data about the image (src,
+	 * width, height, etc.).  In some scenarios, it may not be set, particularly when getting the
 	 * raw image HTML.
 	 *
 	 * @since  1.0.0
@@ -101,7 +94,7 @@ final class Get_The_Image {
 	public $image = '';
 
 	/**
-	 * Original image HTML.  This is set when splitting an image from the content.  By default, this 
+	 * Original image HTML.  This is set when splitting an image from the content.  By default, this
 	 * is only used when 'scan_raw' is set.
 	 *
 	 * @since  1.0.0
@@ -406,8 +399,8 @@ final class Get_The_Image {
 	}
 
 	/**
-	 * Gets the first image attached to the post.  If the post itself is an attachment image, that will 
-	 * be the image used.  This method also works with sub-attachments (images for audio/video attachments 
+	 * Gets the first image attached to the post.  If the post itself is an attachment image, that will
+	 * be the image used.  This method also works with sub-attachments (images for audio/video attachments
 	 * are a good example).
 	 *
 	 * @since  1.0.0
@@ -448,8 +441,8 @@ final class Get_The_Image {
 	}
 
 	/**
-	 * Scans the post content for an image.  It first scans and checks for an image with the 
-	 * "wp-image-xxx" ID.  If that exists, it'll grab the actual image attachment.  If not, it looks 
+	 * Scans the post content for an image.  It first scans and checks for an image with the
+	 * "wp-image-xxx" ID.  If that exists, it'll grab the actual image attachment.  If not, it looks
 	 * for the image source.
 	 *
 	 * @since  1.0.0
@@ -487,17 +480,17 @@ final class Get_The_Image {
 	}
 
 	/**
-	 * Scans the post content for a complete image.  This method will attempt to grab the complete 
-	 * HTML for an image.  If an image is found, pretty much all arguments passed in may be ignored 
-	 * in favor of getting the actual image used in the post content.  It works with both captions 
-	 * and linked images.  However, it can't account for all possible HTML wrappers for images used 
+	 * Scans the post content for a complete image.  This method will attempt to grab the complete
+	 * HTML for an image.  If an image is found, pretty much all arguments passed in may be ignored
+	 * in favor of getting the actual image used in the post content.  It works with both captions
+	 * and linked images.  However, it can't account for all possible HTML wrappers for images used
 	 * in all setups.
 	 *
-	 * This method was created for use with the WordPress "image" post format where theme authors 
-	 * might want to pull the whole image from the content as the user added it.  It's also meant 
+	 * This method was created for use with the WordPress "image" post format where theme authors
+	 * might want to pull the whole image from the content as the user added it.  It's also meant
 	 * to be used (not required) with the `split_content` option.
 	 *
-	 * Note: This option should not be used if returning the image as an array.  If that's desired, 
+	 * Note: This option should not be used if returning the image as an array.  If that's desired,
 	 * use the `scan` option instead.
 	 *
 	 * @since  1.0.0
@@ -580,8 +573,8 @@ final class Get_The_Image {
 	}
 
 	/**
-	 * Allows developers to create a custom callback function.  If the `callback` argument is set, theme 
-	 * developers are expected to **always** return an array.  Even if nothing is found, return an empty 
+	 * Allows developers to create a custom callback function.  If the `callback` argument is set, theme
+	 * developers are expected to **always** return an array.  Even if nothing is found, return an empty
 	 * array.
 	 *
 	 * @since  1.0.0
@@ -604,7 +597,7 @@ final class Get_The_Image {
 	}
 
 	/**
-	 * Handles an image attachment.  Other methods rely on this method for getting the image data since 
+	 * Handles an image attachment.  Other methods rely on this method for getting the image data since
 	 * most images are actually attachments.
 	 *
 	 * @since  1.0.0
@@ -629,16 +622,16 @@ final class Get_The_Image {
 
 		/* Set the image args. */
 		$this->image_args = array(
-			'src'     => $image[0], 
+			'src'     => $image[0],
 			'width'   => $image[1],
 			'height'  => $image[2],
-			'alt'     => $alt, 
-			'caption' => $caption 
+			'alt'     => $alt,
+			'caption' => $caption
 		);
 	}
 
 	/**
-	 * Formats the image HTML.  This method is only called if the `$image` property isn't set.  It uses 
+	 * Formats the image HTML.  This method is only called if the `$image` property isn't set.  It uses
 	 * the `$image_args` property to set up the image.
 	 *
 	 * @since  1.0.0
@@ -648,85 +641,76 @@ final class Get_The_Image {
 	public function format_image() {
 
 		/* If there is no image URL, return false. */
-		if ( empty( $this->image_args['src'] ) )
+		if ( empty( $this->image_args['src'] ) ) {
 			return;
+		}
 
 		/* Check against min. width. If the image width is too small return. */
-		if ( 0 < $this->args['min_width'] && isset( $this->image_args['width'] ) && $this->image_args['width'] < $this->args['min_width'] )
+		if ( 0 < $this->args['min_width'] && isset( $this->image_args['width'] ) && $this->image_args['width'] < $this->args['min_width'] ) {
 			return;
+		}
 
 		/* Check against min. height. If the image height is too small return. */
-		if ( 0 < $this->args['min_height'] && isset( $this->image_args['height'] ) && $this->image_args['height'] < $this->args['min_height'] )
+		if ( 0 < $this->args['min_height'] && isset( $this->image_args['height'] ) && $this->image_args['height'] < $this->args['min_height'] ) {
 			return;
-
-		/* Empty classes array. */
-		$classes = array();
+		}
 
 		/* If there is alt text, set it.  Otherwise, default to the post title. */
-		$image_alt = !empty( $this->image_args['alt'] ) ? $this->image_args['alt'] : get_post_field( 'post_title', $this->args['post_id'] );
+		$image_alt = ! empty( $this->image_args['alt'] ) ? $this->image_args['alt'] : get_post_field( 'post_title', $this->args['post_id'] );
 
 		/* If there's a width/height for the image. */
 		if ( isset( $this->image_args['width'] ) && isset( $this->image_args['height'] ) ) {
-
-			/* Set a class based on the orientation. */
-			$classes[] = ( $this->image_args['height'] > $this->image_args['width'] ) ? 'portrait' : 'landscape';
 
 			/* If an explicit width/height is not set, use the info from the image. */
 			if ( empty( $this->args['width'] ) && empty( $this->args['height'] ) ) {
 				$this->args['width']  = $this->image_args['width'];
 				$this->args['height'] = $this->image_args['height'];
 			}
+
 		}
 
 		/* If there is a width or height, set them as HMTL-ready attributes. */
 		$width  = $this->args['width']  ? ' width="' .  esc_attr( $this->args['width']  ) . '"' : '';
 		$height = $this->args['height'] ? ' height="' . esc_attr( $this->args['height'] ) . '"' : '';
 
-		/* Add the meta key(s) to the classes array. */
-		if ( !empty( $this->args['meta_key'] ) )
-			$classes = array_merge( $classes, (array)$this->args['meta_key'] );
-
-		/* Add the $size to the class. */
-		$classes[] = $this->args['size'];
-
 		/* Get the custom image class. */
-		if ( !empty( $this->args['image_class'] ) ) {
-
-			if ( !is_array( $this->args['image_class'] ) )
-				$this->args['image_class'] = preg_split( '#\s+#', $this->args['image_class'] );
-
-			$classes = array_merge( $classes, $this->args['image_class'] );
+		if ( ! is_array( $this->args['image_class'] ) ) {
+			$this->args['image_class'] = preg_split( '#\s+#', $this->args['image_class'] );
 		}
 
 		/* Sanitize all the classes. */
-		$classes = $this->sanitize_class( $classes );
+		$this->args['image_class'] = $this->sanitize_class( $this->args['image_class'] );
 
 		/* Join all the classes into a single string and make sure there are no duplicates. */
-		$class = join( ' ', $classes );
+		$class = implode( ' ', $this->args['image_class'] );
 
 		/* Add the image attributes to the <img /> element. */
 		$html = sprintf( '<img src="%s" alt="%s" class="%s"%s itemprop="image" />', esc_attr( $this->image_args['src'] ), esc_attr( strip_tags( $image_alt ) ), $class, $width . $height );
 
 		/* If $link_to_post is set to true, link the image to its post. */
-		if ( $this->args['link_to_post'] )
+		if ( $this->args['link_to_post'] ) {
 			$html = '<a href="' . get_permalink( $this->args['post_id'] ) . '" title="' . esc_attr( get_post_field( 'post_title', $this->args['post_id'] ) ) . '">' . $html . '</a>';
+		}
 
 		/* If there is a $post_thumbnail_id, apply the WP filters normally associated with get_the_post_thumbnail(). */
-		if ( !empty( $this->image_args['post_thumbnail_id'] ) )
+		if ( ! empty( $this->image_args['post_thumbnail_id'] ) ) {
 			$html = apply_filters( 'post_thumbnail_html', $html, $this->args['post_id'], $this->image_args['post_thumbnail_id'], $this->args['size'], '' );
+		}
 
 		/* If we're showing a caption. */
-		if ( true === $this->args['caption'] && !empty( $this->image_args['caption'] ) )
+		if ( true === $this->args['caption'] && ! empty( $this->image_args['caption'] ) ) {
 			$html = img_caption_shortcode( array( 'caption' => $this->image_args['caption'], 'width' => $this->args['width'] ), $html );
+		}
 
 		$this->image = $html;
+
 	}
 
 	/**
-	 * Saves the image source as metadata.  Saving the image as meta is actually quite a bit quicker 
-	 * if the user doesn't have a persistent caching plugin available.  However, it doesn't play as 
-	 * nicely with custom image sizes used across multiple themes where one might want to resize images. 
-	 * This option should be reserved for advanced users only.  Don't use in publicly-distributed 
+	 * Saves the image source as metadata.  Saving the image as meta is actually quite a bit quicker
+	 * if the user doesn't have a persistent caching plugin available.  However, it doesn't play as
+	 * nicely with custom image sizes used across multiple themes where one might want to resize images.
+	 * This option should be reserved for advanced users only.  Don't use in publicly-distributed
 	 * themes.
 	 *
 	 * @since  1.0.0
@@ -736,25 +720,28 @@ final class Get_The_Image {
 	public function meta_key_save() {
 
 		/* If the $meta_key_save argument is empty or there is no image $url given, return. */
-		if ( empty( $this->args['meta_key_save'] ) || empty( $this->image_args['src'] ) )
+		if ( empty( $this->args['meta_key_save'] ) || empty( $this->image_args['src'] ) ) {
 			return;
+		}
 
 		/* Get the current value of the meta key. */
 		$meta = get_post_meta( $this->args['post_id'], $this->args['meta_key_save'], true );
 
 		/* If there is no value for the meta key, set a new value with the image $url. */
-		if ( empty( $meta ) )
+		if ( empty( $meta ) ) {
 			add_post_meta( $this->args['post_id'], $this->args['meta_key_save'], $this->image_args['src'] );
 
 		/* If the current value doesn't match the image $url, update it. */
-		elseif ( $meta !== $this->image_args['src'] )
+		} elseif ( $meta !== $this->image_args['src'] ) {
 			update_post_meta( $this->args['post_id'], $this->args['meta_key_save'], $this->image_args['src'], $meta );
+		}
+
 	}
 
 	/**
-	 * Saves the image attachment as the WordPress featured image.  This is useful for setting the 
-	 * featured image for the post in the case that the user forgot to (win for client work!).  It 
-	 * should not be used in publicly-distributed themes where you don't know how the user will be 
+	 * Saves the image attachment as the WordPress featured image.  This is useful for setting the
+	 * featured image for the post in the case that the user forgot to (win for client work!).  It
+	 * should not be used in publicly-distributed themes where you don't know how the user will be
 	 * setting up their site.
 	 *
 	 * @since  1.0.0
@@ -764,8 +751,10 @@ final class Get_The_Image {
 	public function thumbnail_id_save( $attachment_id ) {
 
 		/* Save the attachment as the 'featured image'. */
-		if ( true === $this->args['thumbnail_id_save'] )
+		if ( true === $this->args['thumbnail_id_save'] ) {
 			set_post_thumbnail( $this->args['post_id'], $attachment_id );
+		}
+
 	}
 
 	/**
@@ -813,7 +802,7 @@ function get_the_image_delete_cache_by_post( $post_id ) {
 }
 
 /**
- * Deletes the image cache for a specific post when the 'added_post_meta', 'deleted_post_meta', 
+ * Deletes the image cache for a specific post when the 'added_post_meta', 'deleted_post_meta',
  * or 'updated_post_meta' hooks are called.
  *
  * @since  0.7.0
@@ -825,115 +814,3 @@ function get_the_image_delete_cache_by_post( $post_id ) {
 function get_the_image_delete_cache_by_meta( $meta_id, $post_id ) {
 	wp_cache_delete( $post_id, 'get_the_image' );
 }
-
-
-/* === Deprecated functions === */
-
-
-/**
- * @since      0.1.0
- * @deprecated 0.3.0
- * @access     public
- */
-function get_the_image_link() {
-	_deprecated_function( __FUNCTION__, '0.3.0', 'get_the_image' );
-	get_the_image( array( 'link_to_post' => true ) );
-}
-
-/**
- * @since      0.3.0
- * @deprecated 0.7.0
- * @access     private
- */
-function image_by_custom_field() {}
-
-/**
- * @since      0.4.0
- * @deprecated 0.7.0
- * @access     private
- */
-function image_by_the_post_thumbnail() {}
-
-/**
- * @since      0.3.0
- * @deprecated 0.7.0
- * @access     private
- */
-function image_by_attachment() {}
-
-/**
- * @since      0.3.0
- * @deprecated 0.7.0
- * @access     private
- */
-function image_by_scan() {}
-
-/**
- * @since      0.3.0
- * @deprecated 0.7.0
- * @access     private
- */
-function image_by_default() {}
-
-/**
- * @since      0.1.0
- * @deprecated 0.7.0
- * @access     private
- */
-function display_the_image() {}
-
-/**
- * @since      0.5.0
- * @deprecated 0.7.0
- * @access     private
- */
-function get_the_image_delete_cache() {}
-
-/**
- * @since      0.7.0
- * @deprecated 1.0.0
- * @access     private
- */
-function get_the_image_by_meta_key() {}
-
-/**
- * @since      0.7.0
- * @deprecated 1.0.0
- * @access     private
- */
-function get_the_image_by_post_thumbnail() {}
-
-/**
- * @since      0.7.0
- * @deprecated 1.0.0
- * @access     private
- */
-function get_the_image_by_attachment() {}
-
-/**
- * @since      0.7.0
- * @deprecated 1.0.0
- * @access     private
- */
-function get_the_image_by_scan() {}
-
-/**
- * @since      0.7.0
- * @deprecated 1.0.0
- * @access     private
- */
-function get_the_image_by_default() {}
-
-/**
- * @since      0.7.0
- * @deprecated 1.0.0
- * @access     private
- */
-function get_the_image_format() {}
-
-/**
- * @since      0.6.0
- * @deprecated 1.0.0
- * @access     private
- */
-function get_the_image_meta_key_save() {}
